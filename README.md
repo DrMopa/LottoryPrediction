@@ -1,0 +1,2 @@
+# LottoryPrediction
+Software Systems Practicum
