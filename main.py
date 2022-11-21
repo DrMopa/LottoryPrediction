@@ -1,42 +1,24 @@
-import keras
-import tensorflow as tf
+import NeauralNetwork
+import getnumbers
+import Data_Cleaning
 import numpy as np
 
 def main():
+    CSV_URL = 'https://data.ny.gov/resource/d6yy-54nr.csv'
+    CSV_File_Name = 'dataset.csv'
 
-    def load_csv(fileName):
-        arr = np.loadtxt(fileName, delimiter=",", dtype=str)
+    getnumbers.Pull_Data(CSV_URL, CSV_File_Name)
+    dataset = Data_Cleaning.load_Clean_Data(CSV_File_Name)
+    dataset_labels = Data_Cleaning.Data_Labeling(dataset)
 
-        #remove / symbol from date
-        arr = np.char.replace(arr, '/', '')
 
-        #remove random ï»¿ trash...
-        arr = np.char.replace(arr, 'ï»¿', '')
+    DNN_output_array, DNN_input_array = Data_Cleaning.NN_Preperation(dataset, dataset_labels)
+    batch_size = 1
+    learning_rate = 0.01
+    model = NeauralNetwork.build_NN_Architecture(batch_size)
+    NeauralNetwork.DNN_train(model, DNN_input_array, DNN_output_array, batch_size, learning_rate)
 
-        arr = arr.astype('uint')
-        return arr
 
-    def build_NN_Architecture(batch_size):
-        model = keras.Sequential()
-        model.add(tf.keras.layers.Dense(1, activation='relu', name='Input'))
-        model.add(tf.keras.layers.Dense(16, activation='relu', name='Hidden_01'))
-        model.add(tf.keras.layers.Dense(32, activation='relu', name='Hidden_02'))
-        model.add(tf.keras.layers.Dense(64, activation='relu', name='Hidden_03'))
-        model.add(tf.keras.layers.Dense(7, activation='relu', name='Output'))
-
-        model.build(input_shape=(batch_size,1))
-
-        return model
-
-    def def_train_and_TestSet(dataset):
-        #converts
-
-    dataset = load_csv("dataset.csv")
-
-    model = build_NN_Architecture(5)
-
-    print(dataset)
-    print(model.summary())
 
 if __name__ == "__main__":
     main()
