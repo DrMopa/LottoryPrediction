@@ -21,5 +21,5 @@ def Pull_Data(CSV_URL, CSV_File_Name):
                         continue
                     cell = int(cell)
                     newlist.append(cell)
-                print(newlist)
+                #print(newlist)
                 spamwriter.writerow([newlist])

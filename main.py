@@ -14,9 +14,9 @@ def main():
 
     DNN_output_array, DNN_input_array = Data_Cleaning.NN_Preperation(dataset, dataset_labels)
     batch_size = 1
-    learning_rate = 0.01
+    learning_rate = 0.0001
     model = NeauralNetwork.build_NN_Architecture(batch_size)
-    NeauralNetwork.DNN_train(model, DNN_input_array, DNN_output_array, batch_size, learning_rate)
+    NeauralNetwork.DNN_train_Predict(model, DNN_input_array, DNN_output_array, batch_size, learning_rate)
 
 
 

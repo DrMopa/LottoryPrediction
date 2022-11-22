@@ -25,12 +25,6 @@ def NN_Preperation(dataset, labels):
             dataset[:, i] = dataset[:, i] / np.max(dataset[i]) #normalizes each colum to their own maximum
         return dataset
 
-    # this function will accept either the N dimensional dataset, or the 1-dimensional label set, and split both the same amount.
-    def dataset_splitSets(dataset): #todo actually split arrays, instead of just returning None as the test set.
-        #train_dataset, test_dataset = np.split(dataset[:-20, :])
-        return dataset, None
-
-
 
     #normalize both dataset and labels
     dataset = dataset_normalization(dataset)
